@@ -10,7 +10,7 @@ export class SolicitudesService {
   constructor(private _httpClient: HttpClient) { }
 
   obtenerListaSolicitudesCreditos(datos) {
-    return this._httpClient.post<any>(`${environment.apiUrl}/corp/creditoPreaprobados/list/corp/`, datos);
+    return this._httpClient.post<any>(`${environment.apiUrl}/corp/creditoPersonas/list/`, datos);
   }
   obtenerInformacionPersona(datos){
     return this._httpClient.post<any>(`${environment.apiUrl}/personas/personas/listOne/cedula/`, datos);
