@@ -75,7 +75,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let solicitud of listaSolicitudes">
-                            <td>{{solicitud.fechaAprobado}}</td>
+                            <td>{{transformarFecha(solicitud.created_at)}}</td>
                             <td>{{solicitud.nombres}}</td>
                             <td>{{solicitud.apellidos}}</td>
                             <td>{{solicitud.monto}}</td>

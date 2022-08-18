@@ -1,5 +1,5 @@
-import { CoreMenu } from '@core/types'
-import { Role } from '../auth/models/role';
+import {CoreMenu} from '@core/types';
+import {Role} from '../auth/models/role';
 
 export const menu: CoreMenu[] = [
   {
@@ -285,7 +285,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'notasPedido',
-        title: 'Notas de pedido',
+        title: 'Procesar Venta con Crédito',
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'dollar-sign',
@@ -305,7 +305,7 @@ export const menu: CoreMenu[] = [
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'credit-card',
-        url: 'personas/supermonedas/mis-monedas'
+        url: 'creditos/creditosPreAprobados'
       },
     ]
   },
@@ -327,14 +327,5 @@ export const menu: CoreMenu[] = [
     type: 'item',
     icon: 'dollar-sign',
     url: 'personas/supermonedas/mis-monedas',
-  },
-  {
-    id: 'creditosPreapobados',
-    title: 'Creditos PreAprobados',
-    // translate: 'MENU.HOME',
-    // role: [Role.SuperMonedas],
-    type: 'item',
-    icon: 'credit-card',
-    url: 'creditos/creditosPreAprobados',
   }
-]
+];

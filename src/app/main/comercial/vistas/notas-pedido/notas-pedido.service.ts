@@ -27,8 +27,6 @@ export class NotasPedidoService {
     );
   }
   actualizarNotaPedido(datos) {
-    console.log(datos);
-
     return this._httpClient.post<any>(
       `${environment.apiUrl}/corp/notasPedidos/update/${datos.id}`,
       datos
