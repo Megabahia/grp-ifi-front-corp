@@ -153,11 +153,13 @@ export class NotasPedidoComponent implements OnInit {
             Validators.min(1),
           ],
         ],
+        nroVentaAux: [0],
       },
       {
         validator: [
           this.compararCodigos('nroAutCli', 'nroAutCliAux'),
           this.compararCodigos2('nroAutCorp', 'nroAutCorpAux'),
+          this.compararMontoVenta('nroVenta', 'nroVentaAux'),
         ],
       }
     );
@@ -339,6 +341,21 @@ export class NotasPedidoComponent implements OnInit {
     };
   }
 
+  compararMontoVenta(nroVenta: string, nroVentaAux: string) {
+    return (group: FormGroup) => {
+      const nroVentaInput = group.controls[nroVenta];
+      const nroVentaInputAux = group.controls[nroVentaAux];
+
+      if (nroVentaInput.value > nroVentaInputAux.value) {
+        return nroVentaInput.setErrors({
+          montoDisponible: {
+            valid: false,
+          },
+        });
+      }
+    };
+  }
+
   generatePdf(action = 'open', Documentpdf) {
     const getDocument =
       Documentpdf === 'pagare'
@@ -511,6 +528,7 @@ export class NotasPedidoComponent implements OnInit {
         codigoCorp: this.confirmarDatosForm.get('nroAutCorp').value,
         numeroFactura: this.confirmarDatosForm.get('nroFact').value,
         montoVenta: this.confirmarDatosForm.get('nroVenta').value,
+        montoDisponible: this.confirmarDatosForm.get('nroVentaAux').value - this.confirmarDatosForm.get('nroVenta').value,
       })
       .subscribe(
         (info) => {
@@ -763,6 +781,9 @@ export class NotasPedidoComponent implements OnInit {
               );
               this.confirmarDatosForm.controls['nroAutCorpAux'].setValue(
                 info.codigoCorp
+              );
+              this.confirmarDatosForm.controls['nroVentaAux'].setValue(
+                info.montoDisponible
               );
               this.codigos = info;
               console.log('Codigos: ', info);

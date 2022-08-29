@@ -89,7 +89,7 @@
                     <i data-feather='edit-2'></i>
                   </div>
                 </a>
-                <a href="javascript:void(0)" (click)="confirDatos(nota)" class="avatar bg-info "
+                <a *ngIf="nota.estado !== 'Venta a Credito Concretado'" href="javascript:void(0)" (click)="confirDatos(nota)" class="avatar bg-info "
                   data-target="#enviar" data-toggle="modal">
                   <div class="avatar-content" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="Enviar a sistema de ofertas">
@@ -550,16 +550,16 @@
         </div>
         <div *ngIf="confirmarDatosSubmit && confrimacionForm.nroAutCli.errors" class="invalid-feedback"
           style="display: block;">
-          <div *ngIf="confrimacionForm.nroAutCli.errors.required"> requerido
+          <div *ngIf="confrimacionForm.nroAutCli.errors.required"> Requerido
           </div>
         </div>
         <div class="form-group">
           <label>Ingreso número de autorización de la Corp (código enviado a
-            {{this.oculatrTelefono(datosConfir.telefono1)}} WhatsApp
+<!--            {{this.oculatrTelefono(datosConfir.telefono1)}} WhatsApp-->
             de
             la
             {{this.datosConfir.nombreComercial}}y al correo:
-            {{this.oculatrCorreo(datosConfir.correoCorp)}}
+<!--            {{this.oculatrCorreo(datosConfir.correoCorp)}}-->
             )</label>
           <input formControlName="nroAutCorp" class="form-control" name="nombreTienda" type="text">
         </div>
@@ -568,7 +568,7 @@
         </div>
         <div *ngIf="confirmarDatosSubmit && confrimacionForm.nroAutCorp.errors" class="invalid-feedback"
           style="display: block;">
-          <div *ngIf="confrimacionForm.nroAutCorp.errors.required"> requerido
+          <div *ngIf="confrimacionForm.nroAutCorp.errors.required"> Requerido
           </div>
         </div>
 
@@ -579,7 +579,7 @@
 
         <div *ngIf="confirmarDatosSubmit && confrimacionForm.nroFact.errors" class="invalid-feedback"
           style="display: block;">
-          <div *ngIf="confrimacionForm.nroFact.errors.required"> requerido
+          <div *ngIf="confrimacionForm.nroFact.errors.required"> Requerido
           </div>
         </div>
         <div class="form-group">
@@ -588,9 +588,12 @@
         </div>
         <div *ngIf="confirmarDatosSubmit && confrimacionForm.nroVenta.errors" class="invalid-feedback"
           style="display: block;">
-          <div *ngIf="confrimacionForm.nroVenta.errors.required"> requerido
+          <div *ngIf="confrimacionForm.nroVenta.errors.required"> Requerido
           </div>
           <div *ngIf="confrimacionForm.nroVenta.errors.pattern"> Solo númericos
+          </div>
+          <div *ngIf="confrimacionForm.nroVenta.errors?.montoDisponible">
+            Monto disponible es superior.
           </div>
         </div>
       </div>
