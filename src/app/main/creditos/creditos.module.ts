@@ -18,9 +18,9 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { CreditosPreaprobadosComponent } from './creditos-preaprobados/creditos-preaprobados.component';
 
 const routes = [
-  { path: '', redirectTo: 'creditosPreAprobados', pathMatch: 'full' },
+  { path: '', redirectTo: 'creditosAprobados', pathMatch: 'full' },
   {
-    path: 'creditosPreAprobados',
+    path: 'creditosAprobados',
     component: CreditosPreaprobadosComponent,
     // data: { roles: [Role.SuperMonedas] },
     canActivate: [AuthGuard]

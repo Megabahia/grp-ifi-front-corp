@@ -292,40 +292,13 @@ export const menu: CoreMenu[] = [
         url: 'comercial/notas-pedido'
       },
       {
-        id: 'solicitudesCredito',
-        title: 'Solicitudes de crédito',
-        // translate: 'MENU.APPS.EMAIL',
-        type: 'item',
-        icon: 'dollar-sign',
-        url: '/comercial/solicitudes-de-credito'
-      },
-      {
         id: 'creditosPreAprobados',
-        title: 'Créditos pre aprobados',
+        title: 'Créditos Aprobados',
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'credit-card',
-        url: 'creditos/creditosPreAprobados'
+        url: 'creditos/creditosAprobados'
       },
     ]
   },
-  {
-    id: 'cobrosRecurrentes',
-    title: 'Cobros Recurrentes',
-    // translate: 'MENU.HOME',
-    // role: [Role.SuperMonedas],
-    type: 'item',
-    icon: 'dollar-sign',
-    url: 'personas/supermonedas/mis-monedas',
-
-  },
-  {
-    id: 'recaudaciones',
-    title: 'Recaudaciones',
-    // translate: 'MENU.HOME',
-    // role: [Role.SuperMonedas],
-    type: 'item',
-    icon: 'dollar-sign',
-    url: 'personas/supermonedas/mis-monedas',
-  }
 ];
