@@ -35,11 +35,11 @@
                 </div>
                 <div class="col-8 custom-file text-left">
                     <div class="custom-file">
-                        <input type="text"
-                               class="form-control"
-                               formControlName="fecha"
-                        >
-
+<!--                        <input type="text"-->
+<!--                               class="form-control"-->
+<!--                               formControlName="fecha"-->
+<!--                        >-->
+                        <ng2-flatpickr [setDate]="fecha" formControlName="fecha" [config]="startDateOptions"></ng2-flatpickr>
                         <div *ngIf="submitted && facturacionControlsForm.fecha.errors" class="invalid-feedback"
                              style="display: block;">
                             <div *ngIf="facturacionControlsForm.fecha.errors.required">Fecha de envío es requerido

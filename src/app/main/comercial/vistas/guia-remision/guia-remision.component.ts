@@ -2,20 +2,31 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {GuiaRemisionService} from './guia-remision.service';
+import {FlatpickrOptions} from 'ng2-flatpickr';
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'app-guia-remision',
     templateUrl: './guia-remision.component.html',
-    styleUrls: ['./guia-remision.component.scss']
+    styleUrls: ['./guia-remision.component.scss'],
+    providers: [DatePipe]
 })
 export class GuiaRemisionComponent implements OnInit {
     public envioDocumentosForm: FormGroup;
     public submitted = false;
+    public startDateOptions: FlatpickrOptions = {
+        altInput: true,
+        mode: 'single',
+        altFormat: 'Y-n-j',
+        altInputClass: 'form-control flat-picker flatpickr-input invoice-edit-input',
+    };
+    public fecha;
 
     constructor(
         private _formBuilder: FormBuilder,
         private _router: Router,
-        private _consultaCreditosService: GuiaRemisionService
+        private _consultaCreditosService: GuiaRemisionService,
+        private datePipe: DatePipe,
     ) {
     }
 
@@ -41,7 +52,7 @@ export class GuiaRemisionComponent implements OnInit {
         }
         const data = {
             numeroEnvio: this.envioDocumentosForm.getRawValue().numeroGuia,
-            fechaEnvio: this.envioDocumentosForm.getRawValue().fecha,
+            fechaEnvio:  this.datePipe.transform(this.envioDocumentosForm.getRawValue().fecha, 'yyyy-MM-dd'),
             courierResponsable: this.envioDocumentosForm.getRawValue().courier,
             direccionEntrega: this.envioDocumentosForm.getRawValue().direccionEntrega,
             cooperativaEntrega: this.envioDocumentosForm.getRawValue().cooperativaAsignada

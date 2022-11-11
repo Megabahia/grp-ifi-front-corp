@@ -70,7 +70,7 @@ const routes = [
     // data: { animation: 'auth' }
   },
   {
-    path: 'envio-doocumentos/?:identificacion',
+    path: 'envio-doocumentos/:identificacion',
     component: EnvioDocumentosComponent ,
     // data: { roles: [Role.BigPuntos] },
     canActivate: [AuthGuard]
