@@ -76,7 +76,6 @@ export class EnvioDocumentosComponent implements OnInit {
         }
         this.actualizarCreditoFormData.set('numeroIdentificacion', this.identificacion );
         this._consultaCreditosService.guardarDatos(this.actualizarCreditoFormData).subscribe((info) => {
-            console.log('guardo-----', info);
             this._router.navigate(['/comercial/guia-remision']);
 
         }, (error) => {

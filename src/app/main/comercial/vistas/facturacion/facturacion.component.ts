@@ -86,12 +86,9 @@ export class FacturacionComponent implements OnInit {
             return;
         });
         this._consultaCreditosService.consultarDatosaArchivos(data).subscribe((info) => {
-            console.log('info?.error', info?.error);
             if (info?.error === 'No existe') {
-                console.log('llega if');
                 this._router.navigate(['/comercial/documentos-habilitantes', this.idCredito]);
             } else {
-                console.log('llega else');
                 this._router.navigate(['/comercial/saldo-contable']);
             }
         }, (error) => {

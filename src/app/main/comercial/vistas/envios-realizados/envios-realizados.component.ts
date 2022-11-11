@@ -21,7 +21,6 @@ export class EnviosRealizadosComponent implements OnInit {
     ngOnInit(): void {
         this._consultaCreditosService.listarEnvios({page_size: this.page_size, page: this.page})
             .subscribe((data) => {
-                console.log('info', data);
                 this.envios = data.info;
             });
     }

@@ -43,10 +43,8 @@ export class DocumentosHabilitantesComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => this.idCredito = params['identificacion']);
-        console.log('params', this.idCredito);
         this._consultaCreditosService.obtenerCredito(this.idCredito).subscribe((info) => {
             // this._consultaCreditosService.obtenerCredito('6351823c5a5d48154714551b').subscribe((info) => {
-            console.log('info', info);
             this.credito = info;
 
         });

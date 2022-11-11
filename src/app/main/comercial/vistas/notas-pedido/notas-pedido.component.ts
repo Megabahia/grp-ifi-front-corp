@@ -702,10 +702,8 @@ export class NotasPedidoComponent implements OnInit {
       this.cerrarModal();
       this.calcularSubtotal();
       this.notaPedido.detalles = this.detallesTransac;
-      console.log(this.detallesTransac);
 
       if (this.notaPedido.id) {
-        console.log(this.notaPedido);
 
         this._notasPedidoService
           .actualizarNotaPedido(this.notaPedido)
@@ -786,7 +784,6 @@ export class NotasPedidoComponent implements OnInit {
                 info.montoDisponible
               );
               this.codigos = info;
-              console.log('Codigos: ', info);
 
               // this.datosConfir = info;
             },
