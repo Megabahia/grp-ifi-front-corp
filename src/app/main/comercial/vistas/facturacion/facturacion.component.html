@@ -184,6 +184,40 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="metodoPago">
+                    Metodo pago
+                </label>
+                <select class="form-control" id="metodoPago" name="metodoPago" formControlName="metodoPago">
+                    <option value="">-Seleccione-</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Targeta">Targeta</option>
+                </select>
+                <div *ngIf="submitted && facturacionControlsForm.metodoPago.errors" class="invalid-feedback"
+                     style="display: block;">
+                    <div *ngIf="facturacionControlsForm.metodoPago.errors.required">Metodo de pago requerido</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pago">
+                    Valor pago
+                </label>
+
+                <div class="custom-file">
+                    <input type="number"
+                           id="pago"
+                           class="form-control"
+                           formControlName="pago"
+                    >
+                    <div *ngIf="submitted && facturacionControlsForm.pago.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="facturacionControlsForm.pago.errors.required">Valor a pagar es requerido</div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="mt-2 text-center">
                 <button class="btn btn-primary mr-1" (click)="siguiente(modalSLC)"

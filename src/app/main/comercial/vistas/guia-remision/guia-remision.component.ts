@@ -33,11 +33,11 @@ export class GuiaRemisionComponent implements OnInit {
 
     ngOnInit(): void {
         this.envioDocumentosForm = this._formBuilder.group({
-            numeroGuia: ['', [Validators.required]], //
+            numeroGuia: ['', [Validators.required, Validators.pattern('^[0-9]+$'), Validators.minLength(10)]], //
             fecha: ['', [Validators.required]], //
-            courier: ['', [Validators.required]], //
+            courier: ['', [Validators.required, Validators.email]], //
             direccionEntrega: ['', [Validators.required]], //
-            cooperativaAsignada: ['', [Validators.required]], //
+            cooperativaAsignada: ['https://coopsanjose-corp.crediventa.com', [Validators.required]], //
         });
     }
 
@@ -48,6 +48,7 @@ export class GuiaRemisionComponent implements OnInit {
     guardar() {
         this.submitted = true;
         if (this.envioDocumentosForm.invalid) {
+            console.log(this.envioDocumentosForm);
             return;
         }
         const data = {

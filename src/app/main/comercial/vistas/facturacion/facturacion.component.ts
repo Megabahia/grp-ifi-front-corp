@@ -57,6 +57,8 @@ export class FacturacionComponent implements OnInit {
             cantidad: ['', [Validators.required]], //
             valorTotal: ['', [Validators.required]], //
             facturaComercial: ['', [Validators.required]], //
+            metodoPago: ['', [Validators.required]], //
+            pago: [0, [Validators.required]], //
         });
 
     }
@@ -66,6 +68,11 @@ export class FacturacionComponent implements OnInit {
     }
 
     siguiente(modal) {
+        if ( localStorage.getItem('montoDisponible') < this.factruacionForm.get('pago').value) {
+            if (!confirm('El valor total de la compra es mayor al Monto de Crédito Aprobado. Desea continuar?')) {
+             return;
+            }
+        }
         this.submitted = true;
         if (this.factruacionForm.invalid) {
             return;
@@ -79,6 +86,8 @@ export class FacturacionComponent implements OnInit {
         this.actualizarCreditoFormData.set('descripcion', this.creditoAprobado.descripcion);
         this.actualizarCreditoFormData.set('cliente', JSON.stringify(this.cliente));
         this.actualizarCreditoFormData.set('credito_id', this.idCredito);
+        this.actualizarCreditoFormData.set('metodoPago', this.creditoAprobado.metodoPago);
+        this.actualizarCreditoFormData.set('pago', this.creditoAprobado.pago);
         this._consultaCreditosService.guardarDatos(this.actualizarCreditoFormData).subscribe((info) => {
         }, (error) => {
             this.mensaje = 'Error al guardar los datos' + error;

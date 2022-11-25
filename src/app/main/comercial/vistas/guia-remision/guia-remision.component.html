@@ -21,7 +21,11 @@
 
                         <div *ngIf="submitted && facturacionControlsForm.numeroGuia.errors" class="invalid-feedback"
                              style="display: block;">
-                            <div *ngIf="facturacionControlsForm.numeroGuia.errors.required">Número de guía de envíoes requerido
+                            <div *ngIf="facturacionControlsForm.numeroGuia.errors.required">Número de guía de envío es requerido
+                            </div>
+                            <div *ngIf="facturacionControlsForm.numeroGuia.errors.pattern">Ingrese solo numeros es requerido
+                            </div>
+                            <div *ngIf="facturacionControlsForm.numeroGuia.errors.minlength">Ingrese minimo 10 numeros
                             </div>
                         </div>
                     </div>
@@ -68,6 +72,9 @@
                             <div *ngIf="facturacionControlsForm.courier.errors.required">
                                 Courier responsable es requerido
                             </div>
+                            <div *ngIf="facturacionControlsForm.courier.errors.email">
+                                Ingrese un correo courier responsable
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +114,7 @@
 
                     <div class="custom-file">
                         <input type="text"
+                               disabled="true"
                                class="form-control"
                                formControlName="cooperativaAsignada"
                         >

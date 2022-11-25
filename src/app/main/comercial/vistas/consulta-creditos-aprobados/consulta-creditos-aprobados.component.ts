@@ -42,7 +42,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
             correo: ['', [Validators.required]], //
             monto: ['', [Validators.required]], //
             saldoDisponible: [''], //
-            cooperativa: ['', [Validators.required]], //
+            cooperativa: ['coopsanjose-corp.crediventa.com', [Validators.required]], //
         });
     }
     get controlsForm() {
@@ -62,6 +62,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
             codigo: this.datosClienteForm.getRawValue().codigo
         };
         this._consultaCreditosService.valdiar(data).subscribe(info => {
+            console.log(info);
             this.credito = info;
             this.creditoAprobadoForm.patchValue({
                 nombre: info?.nombres,
@@ -71,7 +72,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
                 correo: info?.email,
                 monto: info?.monto,
                 saldoDisponible: info?.montoDisponible,
-                cooperativa: info?.cooperativa
+                cooperativa: 'https://coopsanjose-corp.crediventa.com'
             });
             this.pantalla = 2;
         }, (error) => {
@@ -103,6 +104,8 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
     }
 
     facturar(modal) {
+        localStorage.removeItem('montoDisponible');
+        localStorage.setItem('montoDisponible', this.credito.monto);
         this.submittedCA = true;
         if (this.creditoAprobadoForm.invalid) {
             return;
