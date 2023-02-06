@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FacturacionService} from './facturacion.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ConsultaCreditosAprobadosService} from '../consulta-creditos-aprobados/consulta-creditos-aprobados.service';
 
 @Component({
     selector: 'app-facturacion',
@@ -18,11 +19,14 @@ export class FacturacionComponent implements OnInit {
     public creditoAprobado;
     private mensaje: string;
     public cliente;
+    public montoAprobado;
+    public mostrarCampos = false;
 
     constructor(
         private _formBuilder: FormBuilder,
         private _router: Router,
         private _consultaCreditosService: FacturacionService,
+        private _consultaCreditosAprobadosService: ConsultaCreditosAprobadosService,
         private route: ActivatedRoute,
         private modalService: NgbModal,
     ) {
@@ -32,6 +36,9 @@ export class FacturacionComponent implements OnInit {
         this.actualizarCreditoFormData = new FormData();
         this.route.params.subscribe((params: Params) => this.idCredito = params['id']);
 
+        this._consultaCreditosAprobadosService.obtenerCredito(this.idCredito).subscribe(info => {
+            this.montoAprobado = info.monto;
+        });
         this._consultaCreditosService.consultarDatos(this.idCredito).subscribe(info => {
             this.credito = info;
             this.cliente = JSON.parse(this.credito.cliente);
@@ -123,5 +130,14 @@ export class FacturacionComponent implements OnInit {
                 size: 'lg' // size: 'xs' | 'sm' | 'lg' | 'xl'
             }
         );
+    }
+
+    comprobarMonto() {
+        if (this.factruacionForm.get('valorTotal').value > this.montoAprobado) {
+            console.log('if');
+            this.mostrarCampos = true;
+        } else {
+            this.mostrarCampos = false;
+        }
     }
 }

@@ -155,6 +155,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="valorTotal"
+                           (change)="comprobarMonto()"
                     >
                     <div *ngIf="submitted && facturacionControlsForm.valorTotal.errors" class="invalid-feedback"
                          style="display: block;">
@@ -184,7 +185,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div *ngIf="mostrarCampos" class="form-group">
                 <label for="metodoPago">
                     Metodo pago
                 </label>
@@ -192,7 +193,7 @@
                     <option value="">-Seleccione-</option>
                     <option value="Efectivo">Efectivo</option>
                     <option value="Transferencia">Transferencia</option>
-                    <option value="Targeta">Targeta</option>
+                    <option value="Targeta">Tarjeta</option>
                 </select>
                 <div *ngIf="submitted && facturacionControlsForm.metodoPago.errors" class="invalid-feedback"
                      style="display: block;">
@@ -200,7 +201,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div *ngIf="mostrarCampos" class="form-group">
                 <label for="pago">
                     Valor pago
                 </label>
