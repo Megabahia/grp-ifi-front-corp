@@ -8,7 +8,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-primary" href="index.html">Inicio</a>
                             </li>
-                            <li class="breadcrumb-item"><a class="text-primary" href="mis-facturas.html">Big Puntos</a>
+                            <li class="breadcrumb-item"><a class="text-primary" href="mis-facturas.html">facturas</a>
                             </li>
                         </ol>
                     </div>
@@ -71,7 +71,7 @@
                         <tr>
                             <th>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2"/>
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2" />
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </th>
@@ -81,8 +81,8 @@
                             <th>Apellidos</th>
 <!--                            <th>Ruc de Empresa</th>-->
 <!--                            <th>Nombre de Empresa</th>-->
-                            <th>BIG PUNTOS ASIGNADOS</th>
-<!--                            <th>Fecha de Vigencia</th>-->
+                            <th>Correo</th>
+                            <th>Big Puntos asignados</th>
                             <th>Concepto</th>
                         </tr>
                         </thead>
@@ -90,7 +90,7 @@
                         <tr *ngFor="let supermoneda of listaSupermonedas">
                             <td>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2"/>
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2" />
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
                             </td>
@@ -100,15 +100,14 @@
                             <td>{{supermoneda.apellidos}}</td>
 <!--                            <td>{{supermoneda.ruc}}</td>-->
 <!--                            <td>{{supermoneda.empresa}}</td>-->
-                            <td>{{supermoneda.saldo}}</td>
-<!--                            <td>{{supermoneda.fechaVigencia}}</td>-->
+                            <td>{{supermoneda.email}}</td>
+                            <td>{{supermoneda.credito}}</td>
                             <td>{{supermoneda.descripcion}}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <ngb-pagination #paginator [collectionSize]="collectionSize" [(page)]="page" [(pageSize)]="page_size"
-                                [maxSize]="5" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                <ngb-pagination #paginator [collectionSize]="collectionSize" [(page)]="page" [(pageSize)]="page_size" [maxSize]="5" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
                 <!-- Modal to add new user starts-->
                 <!-- Modal to add new user Ends-->
             </div>
@@ -117,37 +116,28 @@
         <!-- users list ends -->
     </div>
 </div>
-<core-sidebar class="modal modal-slide-in sidebar-todo-modal fade" name="factura-electronica"
-              overlayClass="modal-backdrop">
+<core-sidebar class="modal modal-slide-in sidebar-todo-modal fade" name="factura-electronica" overlayClass="modal-backdrop">
     <div class="slideout-content">
         <!-- Modal to add new user starts-->
         <div class="modalsd modal-slide-in sdfade new-user-modal" id="modals-slide-in">
             <div class="modal-dialog">
-                <form class="add-new-user modal-content pt-0" (ngSubmit)="(newUserForm.form.valid)"
-                      #newUserForm="ngForm">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            (click)="toggleSidebar('factura-electronica')">
+                <form class="add-new-user modal-content pt-0" (ngSubmit)="(newUserForm.form.valid)" #newUserForm="ngForm">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="toggleSidebar('factura-electronica')">
                         ×
                     </button>
                     <div class="modal-header mb-1">
-                        <h5 class="modal-title" id="exampleModalLabel">Asignar Supermonedas</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Asignar Big Puntos</h5>
                     </div>
                     <div class="modal-body flex-grow-1">
                         <div class="form-group">
                             <label for="customFile1">Adjuntar archivos (Excel)</label>
-                            <a href="assets/anexos/cargar_bigpuntos_ifis_center.xlsx">Anexo</a>
+                            <a href="assets/anexos/cargar_bigpuntos_corp.xlsx">cargar_bigpuntos_corp</a>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile1" required
-                                       (change)="cargarFacturaElec($event)" accept=".xlsx,.xls"/>
-                                <label class="custom-file-label"
-                                       for="customFile1">{{nombreFacElec ? nombreFacElec : 'Escojer'}}</label>
+                                <input type="file" class="custom-file-input" id="customFile1" required (change)="cargarFacturaElec($event)" accept=".xlsx,.xls" />
+                                <label class="custom-file-label" for="customFile1">{{nombreFacElec ? nombreFacElec:'Escojer'}}</label>
                             </div>
                         </div>
-                        <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#exito"
-                                data-dismiss="modal" aria-label="Close" (click)="subirFacturaElec()"
-                                [disabled]="loading"><span *ngIf="loading"
-                                                           class="spinner-border spinner-border-sm mr-1"></span>Guardar
-                        </button>
+                        <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#exito" data-dismiss="modal" aria-label="Close" (click)="subirFacturaElec()" [disabled]="loading"> <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Guardar</button>
                         <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>

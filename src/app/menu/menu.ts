@@ -22,7 +22,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'misEmpleados',
-        title: 'Mis empleados',
+        title: 'CARGAR EMPLEADOS',
         // translate: 'MENU.APPS.EMAIL',
         type: 'collapsible',
         icon: 'users',
@@ -33,7 +33,7 @@ export const menu: CoreMenu[] = [
             // translate: 'MENU.APPS.EMAIL',
             type: 'item',
             icon: 'circle',
-            url: 'personas/supermonedas/mis-monedas'
+            url: 'corp/nomina-empleados'
           },
           {
             id: 'solicitarCreditos',
@@ -164,28 +164,20 @@ export const menu: CoreMenu[] = [
     ]
   },
   {
-    id: 'superMonedas',
-    title: 'Super Monedas',
+    id: 'bigPuntos',
+    title: 'BIG PUNTOS',
     // role: [Role.SuperMonedas],
     // translate: 'MENU.PAGES.SECTION',
     type: 'collapsible',
     icon: 'dollar-sign',
     children: [
       {
-        id: 'obtenerCobroConSuperMonedas',
-        title: '**Cobrar con Super Monedas',
-        // translate: 'MENU.APPS.EMAIL',
-        type: 'item',
-        icon: 'users',
-        url: '/supermonedas/inicio'
-      },
-      {
         id: 'cobrarConSuperMonedas',
         title: 'Cobrar con Super Monedas',
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'users',
-        url: '/supermonedas/cobrar'
+        url: '/bigpuntos/cobrar'
       },
       {
         id: 'reporteCobrosConSupermonedas',
@@ -193,7 +185,7 @@ export const menu: CoreMenu[] = [
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'users',
-        url: '/supermonedas/reporteCobros'
+        url: '/bigpuntos/reporteCobros'
       },
       {
         id: 'clientes',
@@ -213,11 +205,11 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'cargarMonedas',
-        title: 'Cargar Monedas',
+        title: 'Cargar Big Puntos',
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'dollar-sign',
-        url: 'personas/supermonedas/mis-monedas'
+        url: 'corp/cargar-bigpuntos'
       },
       // {
       //   id: 'cargarPremios',
@@ -228,6 +220,13 @@ export const menu: CoreMenu[] = [
       //   url: 'personas/supermonedas/mis-monedas'
       // },
       {
+        id: 'cargarPremios',
+        title: 'Cargar Premios',
+        // translate: 'MENU.APPS.EMAIL',
+        type: 'item',
+        icon: 'package',
+        url: 'personas/supermonedas/mis-monedas'
+      }, {
         id: 'mdoMotorOfertas',
         title: 'MDO Motor de Ofertas',
         // translate: 'MENU.PAGES.SECTION',
