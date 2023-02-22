@@ -219,14 +219,15 @@ export const menu: CoreMenu[] = [
         icon: 'dollar-sign',
         url: 'personas/supermonedas/mis-monedas'
       },
+      // {
+      //   id: 'cargarPremios',
+      //   title: 'Cargar Premios',
+      //   // translate: 'MENU.APPS.EMAIL',
+      //   type: 'item',
+      //   icon: 'package',
+      //   url: 'personas/supermonedas/mis-monedas'
+      // },
       {
-        id: 'cargarPremios',
-        title: 'Cargar Premios',
-        // translate: 'MENU.APPS.EMAIL',
-        type: 'item',
-        icon: 'package',
-        url: 'personas/supermonedas/mis-monedas'
-      }, {
         id: 'mdoMotorOfertas',
         title: 'MDO Motor de Ofertas',
         // translate: 'MENU.PAGES.SECTION',
