@@ -20,7 +20,7 @@ export class FacturacionComponent implements OnInit {
     private mensaje: string;
     public cliente;
     public montoAprobado;
-    public mostrarCampos = false;
+    public mostrarCampos = true;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -82,6 +82,7 @@ export class FacturacionComponent implements OnInit {
         }
         this.submitted = true;
         if (this.factruacionForm.invalid) {
+            console.log('form', this.factruacionForm);
             return;
         }
         const data = {
