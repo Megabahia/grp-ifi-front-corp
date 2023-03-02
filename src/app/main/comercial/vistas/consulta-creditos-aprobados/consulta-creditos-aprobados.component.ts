@@ -40,6 +40,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
             identificacion: ['', [Validators.required]], //
             celular: ['', [Validators.required]], //
             correo: ['', [Validators.required]], //
+            direccion: ['', [Validators.required]], //
             monto: ['', [Validators.required]], //
             saldoDisponible: [''], //
             cooperativa: ['coopsanjose-corp.crediventa.com', [Validators.required]], //

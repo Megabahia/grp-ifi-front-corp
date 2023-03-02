@@ -301,7 +301,7 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'facturacion',
-        title: 'Facturacion',
+        title: 'Facturación',
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         // icon: 'dollar-sign',

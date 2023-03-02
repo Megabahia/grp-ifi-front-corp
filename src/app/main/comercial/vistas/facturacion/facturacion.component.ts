@@ -21,6 +21,7 @@ export class FacturacionComponent implements OnInit {
     public cliente;
     public montoAprobado;
     public mostrarCampos = true;
+    public valuePay = false;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -67,6 +68,7 @@ export class FacturacionComponent implements OnInit {
             metodoPago: ['', [Validators.required]], //
             pago: [0, [Validators.required]], //
         });
+        this.comprobarMonto();
 
     }
 
@@ -75,9 +77,9 @@ export class FacturacionComponent implements OnInit {
     }
 
     siguiente(modal) {
-        if ( localStorage.getItem('montoDisponible') < this.factruacionForm.get('pago').value) {
+        if (localStorage.getItem('montoDisponible') < this.factruacionForm.get('pago').value) {
             if (!confirm('El valor total de la compra es mayor al Monto de Crédito Aprobado. Desea continuar?')) {
-             return;
+                return;
             }
         }
         this.submitted = true;
@@ -135,10 +137,19 @@ export class FacturacionComponent implements OnInit {
 
     comprobarMonto() {
         if (this.factruacionForm.get('valorTotal').value > this.montoAprobado) {
-            console.log('if');
             this.mostrarCampos = true;
         } else {
             this.mostrarCampos = false;
         }
+    }
+
+    selectedMethodePay(value) {
+        if (value !== '') {
+            this.valuePay = true;
+        } else {
+            this.valuePay = false;
+
+        }
+
     }
 }

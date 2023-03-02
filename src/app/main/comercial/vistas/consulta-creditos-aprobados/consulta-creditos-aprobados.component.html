@@ -155,6 +155,27 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>
+                    Dirección
+                </label>
+
+                <div class="custom-file">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="direccion"
+                    >
+                    <div *ngIf="submittedCA && creditoAprobadoControlsForm.direccion.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="creditoAprobadoControlsForm.direccion.errors.required">Dirección es
+                            requerida
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <label>
                     Monto aprobado
@@ -164,6 +185,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="monto"
+                           disabled
                     >
                     <div *ngIf="submittedCA && creditoAprobadoControlsForm.monto.errors" class="invalid-feedback"
                          style="display: block;">
