@@ -340,6 +340,14 @@ export const menu: CoreMenu[] = [
         url: 'comercial/envios-realizados'
       },
       {
+        id: 'envios-realizados',
+        title: 'Solicitudes de Pago',
+        // translate: 'MENU.APPS.EMAIL',
+        type: 'item',
+        // icon: 'dollar-sign',
+        url: 'comercial/envios-realizados'
+      },
+      {
         id: 'saldo-contable',
         title: 'Saldo contable',
         // translate: 'MENU.APPS.EMAIL',
