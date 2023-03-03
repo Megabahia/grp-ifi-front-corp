@@ -12,4 +12,7 @@ export class EnvioDocumentosService {
     guardarDatos(data) {
         return this._httpClient.post<any>(`${environment.apiUrl}/corp/creditoArchivos/subir/documentosFirmados/`, data);
     }
+    getCredito(data) {
+        return this._httpClient.post<any>(`${environment.apiUrl}/corp/creditoPersonas/list/`, data);
+    }
 }

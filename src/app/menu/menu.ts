@@ -345,7 +345,7 @@ export const menu: CoreMenu[] = [
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         // icon: 'dollar-sign',
-        url: 'comercial/envios-realizados'
+        url: 'comercial/solicitud-pagos'
       },
       {
         id: 'saldo-contable',

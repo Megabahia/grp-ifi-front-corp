@@ -24,6 +24,7 @@ import {GuiaRemisionComponent} from './vistas/guia-remision/guia-remision.compon
 import {EnviosRealizadosComponent} from './vistas/envios-realizados/envios-realizados.component';
 import {SaldoContableComponent} from './vistas/saldo-contable/saldo-contable.component';
 import {SaldoDisponibleComponent} from './vistas/saldo-disponible/saldo-disponible.component';
+import { SolicitudesPagosComponent } from './vistas/solicitudes-pagos/solicitudes-pagos.component';
 
 const routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -103,6 +104,13 @@ const routes = [
     // data: { roles: [Role.BigPuntos] },
     canActivate: [AuthGuard]
     // data: { animation: 'auth' }
+  },
+  {
+    path: 'solicitud-pagos',
+    component: SolicitudesPagosComponent ,
+    // data: { roles: [Role.BigPuntos] },
+    canActivate: [AuthGuard]
+    // data: { animation: 'auth' }
   }
 
 
@@ -121,7 +129,8 @@ const routes = [
     GuiaRemisionComponent,
     SaldoContableComponent,
     SaldoDisponibleComponent,
-    EnviosRealizadosComponent
+    EnviosRealizadosComponent,
+    SolicitudesPagosComponent
   ],
   imports: [
     CoreCommonModule,

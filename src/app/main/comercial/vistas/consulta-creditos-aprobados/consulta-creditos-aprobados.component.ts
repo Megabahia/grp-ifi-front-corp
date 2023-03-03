@@ -20,6 +20,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
     public actualizarCreditoFormData;
     private mensaje: string;
     private saldoDisponible = true;
+
     constructor(
         private modalService: NgbModal,
         private _formBuilder: FormBuilder,
@@ -28,6 +29,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
         private route: ActivatedRoute
     ) {
     }
+
     ngOnInit(): void {
         this.actualizarCreditoFormData = new FormData();
         this.datosClienteForm = this._formBuilder.group({
@@ -46,9 +48,11 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
             cooperativa: ['coopsanjose-corp.crediventa.com', [Validators.required]], //
         });
     }
+
     get controlsForm() {
         return this.datosClienteForm.controls;
     }
+
     get creditoAprobadoControlsForm() {
         return this.creditoAprobadoForm.controls;
     }
@@ -63,6 +67,8 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
             codigo: this.datosClienteForm.getRawValue().codigo
         };
         this._consultaCreditosService.valdiar(data).subscribe(info => {
+            localStorage.setItem('creditoConsulta', JSON.stringify({identificacion: info.numeroIdentificacion, estado: 'aprovado'}));
+
             console.log(info);
             this.credito = info;
             this.creditoAprobadoForm.patchValue({
@@ -131,6 +137,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
             return;
         });
     }
+
     modalOpenSLC(modalSLC = 'modalSLC') {
         this.modalService.open(modalSLC, {
                 centered: true,

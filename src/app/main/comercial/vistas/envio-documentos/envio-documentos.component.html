@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div *ngIf="!soltero" class="form-group">
                 <label>
                     Copia de cédula de cónyuge
                 </label>
@@ -112,13 +112,13 @@
                            for="identificacionConyuge">{{envioForm.get('identificacionConyuge').value}}</label>
                     <div *ngIf="submitted && envioControlsForm.identificacionConyuge.errors" class="invalid-feedback"
                          style="display: block;">
-                        <div *ngIf="envioControlsForm.identificacionConyuge.errors.required">Identificación conyuge es
+                        <div *ngIf="envioControlsForm.identificacionConyuge.errors.required">Identificación cónyuge es
                             requerido
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!soltero">
                 <label>
                     Copia de cédula de cónyuge
                 </label>
@@ -132,8 +132,46 @@
                     <div *ngIf="submitted && envioControlsForm.papeletaVotacionConyuge.errors" class="invalid-feedback"
                          style="display: block;">
                         <div *ngIf="envioControlsForm.papeletaVotacionConyuge.errors.required">Papeleta de votación
-                            conyuge
+                            cónyuge
                             es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    Foto tamaño carnet
+                </label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="fotoCarnet"
+                           formControlName="fotoCarnet"
+                           (change)="subirDoc( $event, 'fotoCarnet')"
+                           accept="image/jpeg,image/png,application/pdf"/>
+                    <label class="custom-file-label"
+                           for="fotoCarnet">{{envioForm.get('fotoCarnet').value}}</label>
+                    <div *ngIf="submitted && envioControlsForm.fotoCarnet.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="envioControlsForm.fotoCarnet.errors.required">
+                            Foto tamaño carnet es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="negocioPropio" class="form-group">
+                <label>
+                    Copia de planilla de luz del Negocio
+                </label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="planillaLuzNegocio"
+                           formControlName="planillaLuzNegocio"
+                           (change)="subirDoc( $event, 'planillaLuzNegocio')"
+                           accept="image/jpeg,image/png,application/pdf"/>
+                    <label class="custom-file-label"
+                           for="planillaLuzNegocio">{{envioForm.get('planillaLuzNegocio').value}}</label>
+                    <div *ngIf="submitted && envioControlsForm.planillaLuzNegocio.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="envioControlsForm.planillaLuzNegocio.errors.required">Planilla Luz del Negocio es
+                            requerido
                         </div>
                     </div>
                 </div>
@@ -151,11 +189,50 @@
                            for="planillaLuzDomicilio">{{envioForm.get('planillaLuzDomicilio').value}}</label>
                     <div *ngIf="submitted && envioControlsForm.planillaLuzDomicilio.errors" class="invalid-feedback"
                          style="display: block;">
-                        <div *ngIf="envioControlsForm.planillaLuzDomicilio.errors.required">Planilla de luz es requerido
+                        <div *ngIf="envioControlsForm.planillaLuzDomicilio.errors.required">Planilla de luz del Domicilio es requerido
                         </div>
                     </div>
                 </div>
             </div>
+            <!--            COSAS DEL NEGOCIO-->
+            <div *ngIf="negocioPropio" class="form-group">
+                <label>
+                    3 Facturas de compra de los últimos meses
+                </label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="facturasCompra"
+                           formControlName="facturasCompra"
+                           (change)="subirDoc( $event, 'facturasCompra')"
+                           accept="image/jpeg,image/png,application/pdf"/>
+                    <label class="custom-file-label"
+                           for="facturasCompra">{{envioForm.get('facturasCompra').value}}</label>
+                    <div *ngIf="submitted && envioControlsForm.facturasCompra.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="envioControlsForm.facturasCompra.errors.required">Facturas de compras es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="negocioPropio" class="form-group">
+                <label>
+                    3 Facturas de venta de los últimos meses
+                </label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="facturasVenta"
+                           formControlName="facturasVenta"
+                           (change)="subirDoc( $event, 'facturasVenta')"
+                           accept="image/jpeg,image/png,application/pdf"/>
+                    <label class="custom-file-label"
+                           for="facturasVenta">{{envioForm.get('facturasVenta').value}}</label>
+                    <div *ngIf="submitted && envioControlsForm.facturasVenta.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="envioControlsForm.facturasVenta.errors.required">Facturas de ventas es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <label>
                     Mecanizado del IESS
@@ -169,7 +246,7 @@
                            for="mecanizadoIees">{{envioForm.get('mecanizadoIees').value}}</label>
                     <div *ngIf="submitted && envioControlsForm.mecanizadoIees.errors" class="invalid-feedback"
                          style="display: block;">
-                        <div *ngIf="envioControlsForm.mecanizadoIees.errors.required">Planilla de luz es requerido
+                        <div *ngIf="envioControlsForm.mecanizadoIees.errors.required">Mecanizado Iees es requerido
                         </div>
                     </div>
                 </div>

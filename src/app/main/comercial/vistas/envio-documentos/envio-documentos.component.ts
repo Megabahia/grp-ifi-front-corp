@@ -16,7 +16,10 @@ export class EnvioDocumentosComponent implements OnInit {
     public actualizarCreditoFormData;
     private mensaje: string;
     public identificacion;
-
+    private creditoConsulta;
+    public dataUser;
+    public soltero = false;
+    public negocioPropio = false;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -25,9 +28,11 @@ export class EnvioDocumentosComponent implements OnInit {
         private _consultaCreditosService: EnvioDocumentosService,
         private modalService: NgbModal,
     ) {
+        this.creditoConsulta = JSON.parse(localStorage.getItem('creditoConsulta'));
     }
 
     ngOnInit(): void {
+
         this.route.params.subscribe((params: Params) => this.identificacion = params['identificacion']);
         // if (this.identificacion) {
         //     this.mensaje = 'Primero consulte crèdito';
@@ -36,14 +41,18 @@ export class EnvioDocumentosComponent implements OnInit {
         this.actualizarCreditoFormData = new FormData();
 
         this.envioForm = this._formBuilder.group({
-            solicitudCredito: ['', [Validators.required]], //
-            evaluacionCrediticia: ['', [Validators.required]], //
-            buro: ['', [Validators.required]], //
+            solicitudCredito: [''], //
+            evaluacionCrediticia: [''], //
+            buro: [''], //
             identificacion: ['', [Validators.required]], //
             papeletaVotacion: ['', [Validators.required]], //
-            identificacionConyuge: ['', [Validators.required]], //
-            papeletaVotacionConyuge: ['', [Validators.required]], //
+            identificacionConyuge: [''], //
+            papeletaVotacionConyuge: [''], //
+            fotoCarnet: ['', [Validators.required]], //
             planillaLuzDomicilio: ['', [Validators.required]], //
+            planillaLuzNegocio: [''], //
+            facturasCompra: [''], //
+            facturasVenta: [''], //
             mecanizadoIees: ['', [Validators.required]], //
             matriculaVehiculo: ['', [Validators.required]], //
             impuestoPredial: ['', [Validators.required]], //
@@ -54,6 +63,40 @@ export class EnvioDocumentosComponent implements OnInit {
             tablaAmortizacion: ['', [Validators.required]], //
             seguroDesgravamen: ['', [Validators.required]], //
             gastosAdministracion: ['', [Validators.required]], //
+        });
+
+        this._consultaCreditosService.getCredito({...this.creditoConsulta, page_size: 1, page: 0}).subscribe((info) => {
+            this.dataUser = info.info[0].user;
+            if (this.dataUser.estadoCivil === 'Solter@' || this.dataUser.estadoCivil === 'Divorciad@') {
+                this.soltero = true;
+                this.envioForm.controls['identificacionConyuge'].clearValidators();
+                this.envioForm.controls['papeletaVotacionConyuge'].clearValidators();
+            } else {
+                this.envioForm.controls['identificacionConyuge'].setValidators([Validators.required]);
+                this.envioForm.controls['identificacionConyuge'].setValue('');
+                this.envioForm.controls['papeletaVotacionConyuge'].setValidators([Validators.required]);
+                this.envioForm.controls['papeletaVotacionConyuge'].setValue('');
+                this.soltero = false;
+            }
+            if (this.dataUser.tipoPersona === 'Negocio propio') {
+                this.negocioPropio = true;
+                this.envioForm.controls['planillaLuzNegocio'].setValidators([Validators.required]);
+                this.envioForm.controls['planillaLuzNegocio'].setValue('');
+                this.envioForm.controls['facturasCompra'].setValidators([Validators.required]);
+                this.envioForm.controls['facturasCompra'].setValue('');
+                this.envioForm.controls['facturasVenta'].setValidators([Validators.required]);
+                this.envioForm.controls['facturasVenta'].setValue('');
+            } else {
+                this.negocioPropio = false;
+                this.envioForm.controls['planillaLuzNegocio'].clearValidators();
+                this.envioForm.controls['facturasCompra'].clearValidators();
+                this.envioForm.controls['facturasVenta'].clearValidators();
+
+            }
+        }, (error) => {
+            this.mensaje = 'Error al guardar los datos' + error;
+            // this.modalOpenSLC(modal);
+            return;
         });
     }
 
@@ -74,7 +117,7 @@ export class EnvioDocumentosComponent implements OnInit {
         if (this.envioForm.invalid) {
             return;
         }
-        this.actualizarCreditoFormData.set('numeroIdentificacion', this.identificacion );
+        this.actualizarCreditoFormData.set('numeroIdentificacion', this.identificacion);
         this._consultaCreditosService.guardarDatos(this.actualizarCreditoFormData).subscribe((info) => {
             this._router.navigate(['/comercial/guia-remision']);
 
