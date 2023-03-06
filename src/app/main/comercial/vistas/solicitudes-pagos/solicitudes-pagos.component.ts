@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EnviosRealizadosService} from '../envios-realizados/envios-realizados.service';
+import {SolicitudesPagosService} from './solicitudes-pagos.service';
 
 @Component({
     selector: 'app-solicitudes-pagos',
@@ -15,12 +15,12 @@ export class SolicitudesPagosComponent implements OnInit {
     public cliente;
 
     constructor(
-        private _consultaCreditosService: EnviosRealizadosService,
+        private _solicitudesPagosService: SolicitudesPagosService,
     ) {
     }
 
     ngOnInit(): void {
-        this._consultaCreditosService.listarEnvios({page_size: this.page_size, page: this.page})
+        this._solicitudesPagosService.listarPagos({page_size: this.page_size, page: this.page})
             .subscribe((data) => {
                 this.envios = data.info;
             });
