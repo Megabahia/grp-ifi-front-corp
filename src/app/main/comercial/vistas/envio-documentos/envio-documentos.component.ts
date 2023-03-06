@@ -46,6 +46,7 @@ export class EnvioDocumentosComponent implements OnInit {
             evaluacionCrediticia: [''], //
             buro: [''], //
             identificacion: ['', [Validators.required]], //
+            ruc: ['', [Validators.required]], //
             papeletaVotacion: ['', [Validators.required]], //
             identificacionConyuge: [''], //
             papeletaVotacionConyuge: [''], //

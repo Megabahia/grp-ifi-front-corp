@@ -69,7 +69,7 @@
             </div>
             <div class="form-group">
                 <label>
-                    Copia de cédula y/o RUC
+                    Copia de cédula
                 </label>
                 <a *ngIf="credito?.identificacion" href="{{credito.identificacion}}"> ver </a>
 
@@ -83,6 +83,26 @@
                     <div *ngIf="submitted && envioControlsForm.identificacion.errors" class="invalid-feedback"
                          style="display: block;">
                         <div *ngIf="envioControlsForm.identificacion.errors.required">Identificación es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    Copia de RUC
+                </label>
+                <a *ngIf="credito?.ruc" href="{{credito.ruc}}"> ver </a>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ruc"
+                           formControlName="ruc"
+                           (change)="subirDoc( $event, 'ruc')"
+                           accept="image/jpeg,image/png,application/pdf"/>
+                    <label class="custom-file-label"
+                           for="ruc">{{envioForm.get('ruc').value}}</label>
+                    <div *ngIf="submitted && envioControlsForm.ruc.errors" class="invalid-feedback"
+                         style="display: block;">
+                        <div *ngIf="envioControlsForm.ruc.errors.required">Ruc es requerido
                         </div>
                     </div>
                 </div>
