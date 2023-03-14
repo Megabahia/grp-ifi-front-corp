@@ -21,6 +21,7 @@ export class EnvioDocumentosComponent implements OnInit {
     public soltero = false;
     public negocioPropio = false;
     public credito;
+    public enviarForm = false;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -120,11 +121,14 @@ export class EnvioDocumentosComponent implements OnInit {
         if (this.envioForm.invalid) {
             return;
         }
+        this.enviarForm = true;
         this.actualizarCreditoFormData.set('numeroIdentificacion', this.identificacion);
         this._consultaCreditosService.guardarDatos(this.actualizarCreditoFormData).subscribe((info) => {
+            this.enviarForm = false;
             this._router.navigate(['/comercial/guia-remision']);
 
         }, (error) => {
+            this.enviarForm = false;
             this.mensaje = 'Error al guardar los datos' + error;
             this.modalOpenSLC(modal);
             return;
