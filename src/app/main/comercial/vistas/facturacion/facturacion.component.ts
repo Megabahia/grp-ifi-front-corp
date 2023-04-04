@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FacturacionService} from './facturacion.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -39,6 +39,7 @@ export class FacturacionComponent implements OnInit {
 
         this._consultaCreditosAprobadosService.obtenerCredito(this.idCredito).subscribe(info => {
             this.montoAprobado = info.monto;
+            console.log('montoAprobado', this.montoAprobado);
         });
         this._consultaCreditosService.consultarDatos(this.idCredito).subscribe(info => {
             this.credito = info;
@@ -138,8 +139,16 @@ export class FacturacionComponent implements OnInit {
     comprobarMonto() {
         if (this.factruacionForm.get('valorTotal').value > this.montoAprobado) {
             this.mostrarCampos = true;
+            (this.factruacionForm as FormGroup).setControl('metodoPago',
+                new FormControl('', [Validators.required]));
+            (this.factruacionForm as FormGroup).setControl('pago',
+                new FormControl('', [Validators.required]));
         } else {
             this.mostrarCampos = false;
+            (this.factruacionForm as FormGroup).setControl('metodoPago',
+                new FormControl());
+            (this.factruacionForm as FormGroup).setControl('pago',
+                new FormControl());
         }
     }
 
