@@ -77,7 +77,7 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
                 identificacion: info?.numeroIdentificacion,
                 celular: info?.celular,
                 correo: info?.email,
-                monto: info?.monto,
+                monto: info?.montoAprobado,
                 saldoDisponible: info?.montoDisponible,
                 cooperativa: 'https://coopsanjose-corp.crediventa.com'
             });
