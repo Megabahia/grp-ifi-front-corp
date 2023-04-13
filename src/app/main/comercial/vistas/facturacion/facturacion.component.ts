@@ -38,7 +38,7 @@ export class FacturacionComponent implements OnInit {
         this.route.params.subscribe((params: Params) => this.idCredito = params['id']);
 
         this._consultaCreditosAprobadosService.obtenerCredito(this.idCredito).subscribe(info => {
-            this.montoAprobado = info.monto;
+            this.montoAprobado = info.montoAprobado;
             console.log('montoAprobado', this.montoAprobado);
         });
         this._consultaCreditosService.consultarDatos(this.idCredito).subscribe(info => {
@@ -137,6 +137,8 @@ export class FacturacionComponent implements OnInit {
     }
 
     comprobarMonto() {
+        console.log(this.factruacionForm.get('valorTotal').value);
+        console.log(this.montoAprobado);
         if (this.factruacionForm.get('valorTotal').value > this.montoAprobado) {
             this.mostrarCampos = true;
             (this.factruacionForm as FormGroup).setControl('metodoPago',
