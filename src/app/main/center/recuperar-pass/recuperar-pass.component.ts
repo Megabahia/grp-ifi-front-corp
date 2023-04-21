@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { RecuperarPassService } from './recuperar-pass.service';
 import { Router } from '@angular/router';
+import {environment} from "../../../../environments/environment";
+
 
 @Component({
   selector: 'app-recuperar-pass',
@@ -36,7 +38,7 @@ export class RecuperarPassComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _recuperarPassService: RecuperarPassService) {
-    this.siteKey = '6LcnrAAkAAAAAPwRb40rbWTYENSiELdmQlEz3qSi';
+    this.siteKey = environment.setKey;
     this._unsubscribeAll = new Subject();
 
     // Configure the layout
