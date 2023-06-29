@@ -8,7 +8,6 @@ import { Subject } from 'rxjs';
 import { ReseteoPasswordService } from './reseteo-password.service';
 import {environment} from "../../../../environments/environment";
 
-
 @Component({
   selector: 'app-reseteo-password',
   templateUrl: './reseteo-password.component.html',
@@ -40,11 +39,11 @@ export class ReseteoPasswordComponent implements OnInit {
    *
    */
   constructor(
-    private _coreConfigService: CoreConfigService,
-    private _formBuilder: FormBuilder,
-    private _router: Router,
-    private _reseteoPasswordService: ReseteoPasswordService,
-    private _activatedRoute: ActivatedRoute
+      private _coreConfigService: CoreConfigService,
+      private _formBuilder: FormBuilder,
+      private _router: Router,
+      private _reseteoPasswordService: ReseteoPasswordService,
+      private _activatedRoute: ActivatedRoute
   ) {
     this.siteKey = environment.setKey;
     this._unsubscribeAll = new Subject();
@@ -71,6 +70,7 @@ export class ReseteoPasswordComponent implements OnInit {
   get f() {
     return this.forgotPasswordForm.controls;
   }
+
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 
@@ -98,6 +98,7 @@ export class ReseteoPasswordComponent implements OnInit {
   togglePasswordTextType() {
     this.passwordTextType = !this.passwordTextType;
   }
+
   toggleConfirmPasswordTextType() {
     this.confirmPasswordTextType = !this.confirmPasswordTextType;
   }
@@ -110,7 +111,7 @@ export class ReseteoPasswordComponent implements OnInit {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.forgotPasswordForm.invalid || !this.passwordSimilar) {
+    if (this.forgotPasswordForm.invalid || !this.passwordSimilar || !this.captcha) {
       return;
     }
     this._reseteoPasswordService.resetearPassword(
@@ -130,6 +131,7 @@ export class ReseteoPasswordComponent implements OnInit {
         this.error = error.error.password;
       });
   }
+
   compararPassword() {
     if (this.f.password.value == this.f.confirmPassword.value) {
       this.passwordSimilar = true;
@@ -137,6 +139,7 @@ export class ReseteoPasswordComponent implements OnInit {
       this.passwordSimilar = false;
     }
   }
+
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
@@ -146,5 +149,4 @@ export class ReseteoPasswordComponent implements OnInit {
   captchaValidado(evento) {
     this.captcha = true;
   }
-
 }
