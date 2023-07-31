@@ -173,7 +173,7 @@ export const menu: CoreMenu[] = [
     children: [
       {
         id: 'cobrarConSuperMonedas',
-        title: 'Cobrar con Super Monedas',
+        title: 'Cobrar con Big Puntos ',
         // translate: 'MENU.APPS.EMAIL',
         type: 'item',
         icon: 'users',
