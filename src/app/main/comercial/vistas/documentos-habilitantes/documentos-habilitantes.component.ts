@@ -1,7 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {DocumentosHabilitantesService} from './documentos-habilitantes.service';
-import {Validators} from '@angular/forms';
+
+/**
+ * IFIS
+ * Corp
+ * Esta pantalla sirve para mostrar los documentos habilitantes
+ * Rutas:
+ * `${environment.apiUrl}/corp/creditoPersonas/listOne/${id}`
+ */
 
 @Component({
     selector: 'app-documentos-habilitantes',

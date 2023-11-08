@@ -5,6 +5,15 @@ import {FacturacionService} from './facturacion.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ConsultaCreditosAprobadosService} from '../consulta-creditos-aprobados/consulta-creditos-aprobados.service';
 
+/**
+ * IFIS
+ * Corp
+ * ESta pantalla sirve para cargar la factura del cliente con sus datos
+ * Rutas:
+ * `${environment.apiUrl}/corp/creditoPersonas/listOne/${id}`
+ * `${environment.apiUrl}/corp/notasPedidos/create/factura/`,
+ */
+
 @Component({
     selector: 'app-facturacion',
     templateUrl: './facturacion.component.html',
@@ -155,12 +164,6 @@ export class FacturacionComponent implements OnInit {
     }
 
     selectedMethodePay(value) {
-        if (value !== '') {
-            this.valuePay = true;
-        } else {
-            this.valuePay = false;
-
-        }
-
+        this.valuePay = value !== '';
     }
 }

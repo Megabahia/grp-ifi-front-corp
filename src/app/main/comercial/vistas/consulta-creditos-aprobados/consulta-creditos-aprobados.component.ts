@@ -4,6 +4,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ConsultaCreditosAprobadosService} from './consulta-creditos-aprobados.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
+/**
+ * IFIS
+ * Corp
+ * ESta pantalla sirve para consultar los creditos
+ * Rutas:
+ * `${environment.apiUrl}/corp/creditoPersonas/validar/codigo/creditoAprobado`,
+ * `${environment.apiUrl}/corp/creditoPersonas/generar/codigo/creditoAprobado`,
+ */
+
 @Component({
     selector: 'app-consulta-creditos-aprobados',
     templateUrl: './consulta-creditos-aprobados.component.html',
@@ -26,7 +35,6 @@ export class ConsultaCreditosAprobadosComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _router: Router,
         private _consultaCreditosService: ConsultaCreditosAprobadosService,
-        private route: ActivatedRoute
     ) {
     }
 
